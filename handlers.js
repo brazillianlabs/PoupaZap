@@ -1,6 +1,5 @@
 // handlers.js
 const { normalizeText, extractAmountFromString, formatCurrency, getCategoryFromString, parseCurrencyValue } = require('./utils');
-const { getMainMenu, getCategoryMenu, getCardsMenu, getHelp, mapInputToMenuOption } = require('./utils');
 const { addTransaction, getMonthlyBalance, getCategoryExpenses, addScheduledExpenseToUser, addCreditCard, getCreditCardsForUser, getCreditCardByNickname, removeCreditCard, db } = require('./database');
 const pino = require('pino');
 
@@ -20,7 +19,7 @@ async function tryParseQuickExpense(text, userData) {
   const cards = await getCreditCardsForUser(userData.jid);
   if (cards?.length) {
     for (const card of cards) {
-      const regex = new RegExp(`(?:no|no cartao|pelo|com o|no credito)\s+${card.nickname}`, 'i');
+      const regex = new RegExp(`(?:no|no cartao|pelo|com o|no credito)\\s+${card.nickname}`, 'i');
       if (regex.test(remainingText)) {
         cardId = card.id;
         remainingText = remainingText.replace(regex, ' ');
