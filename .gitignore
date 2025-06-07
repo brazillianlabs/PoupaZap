@@ -1,0 +1,6 @@
+.env
+poupazap_persistent_data/
+baileys_auth_info/
+.sqlite
+temp_audio/
+node_modules
